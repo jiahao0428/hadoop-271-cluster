@@ -85,6 +85,7 @@ RUN sed  -i "/^[^#]*UsePAM/ s/.*/#&/"  /etc/ssh/sshd_config && \
 
 #Spark
 ADD spark-1.6.1-bin-hadoop2.6.tgz /usr/local
+ADD scala-2.10.4.tgz /usr/local
 
 CMD ["/etc/bootstrap.sh", "-d"]
 
