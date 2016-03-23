@@ -44,6 +44,8 @@ ENV HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop \
     YARN_CONF_DIR=$HADOOP_PREFIX/etc/hadoop \
     JAVA_HOME=/usr/java/default \
+    SPARK_HOME=/usr/local/spark \
+    SCALA_HOME=/usr/local/scala \
     TERM=xterm
  
 ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:.
