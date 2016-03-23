@@ -1,5 +1,5 @@
 namenode:
-  image: sfedyakov/hadoop-271-cluster
+  image: jiahao0428/hadoop-spark-cluster
   container_name: namenode
   hostname: namenode
   ports:
@@ -9,7 +9,7 @@ namenode:
   command: "/etc/bootstrap.sh -d -namenode"
 
 datanode:
-  image: sfedyakov/hadoop-271-cluster
+  image: jiahao0428/hadoop-spark-cluster
   links:
     - "namenode:namenode"
 #  ports:
