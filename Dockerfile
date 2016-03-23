@@ -49,7 +49,7 @@ ENV HADOOP_PREFIX=/usr/local/hadoop \
     SCALA_HOME=/usr/local/scala \
     TERM=xterm
  
-ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:.
+ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:$SPARK_HOME/bin:$SCALA_HOME/bin:.
 
 RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/java/default\nexport HADOOP_PREFIX=/usr/local/hadoop\nexport HADOOP_HOME=/usr/local/hadoop\n:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh && \
     sed -i '/^export HADOOP_CONF_DIR/ s:.*:export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop/:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh && \
