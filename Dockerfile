@@ -45,6 +45,7 @@ ENV HADOOP_PREFIX=/usr/local/hadoop \
     YARN_CONF_DIR=$HADOOP_PREFIX/etc/hadoop \
     JAVA_HOME=/usr/java/default \
     SPARK_HOME=/usr/local/spark \
+    SPARK_YARN_QUEUE=dev \
     SCALA_HOME=/usr/local/scala \
     TERM=xterm
  
