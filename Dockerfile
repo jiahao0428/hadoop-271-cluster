@@ -11,7 +11,7 @@ USER root
 RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync | true && \
     yum update -y libselinux | true && \
     yum install dnsmasq -y && \
-    yum install scala && \
+    yum install scala -y && \
     echo source /etc/bashrc > /root/.bash_profile && \
     echo user=root >> /etc/dnsmasq.conf && \
     echo bogus-priv >> /etc/dnsmasq.conf && \
