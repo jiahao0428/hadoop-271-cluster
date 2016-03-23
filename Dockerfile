@@ -3,7 +3,7 @@
 # sudo docker build -t yarn_cluster .
 
 FROM sequenceiq/pam:centos-6.5
-MAINTAINER Stas Fedyakov Stanislav.Fedyakov@gmail.com
+MAINTAINER JiaHao Cheng jiahao0428@gmail.com
 
 USER root
 
@@ -11,6 +11,7 @@ USER root
 RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync | true && \
     yum update -y libselinux | true && \
     yum install dnsmasq -y && \
+    yum install scala && \
     echo source /etc/bashrc > /root/.bash_profile && \
     echo user=root >> /etc/dnsmasq.conf && \
     echo bogus-priv >> /etc/dnsmasq.conf && \
@@ -82,6 +83,9 @@ RUN ls -la /usr/local/hadoop/etc/hadoop/*-env.sh && \
 RUN sed  -i "/^[^#]*UsePAM/ s/.*/#&/"  /etc/ssh/sshd_config && \
     echo "UsePAM no" >> /etc/ssh/sshd_config && \
     echo "Port 2122" >> /etc/ssh/sshd_config
+
+#Spark
+ADD http://apache.stu.edu.tw/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz /usr/local
 
 CMD ["/etc/bootstrap.sh", "-d"]
 
