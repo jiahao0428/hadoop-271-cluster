@@ -84,7 +84,7 @@ RUN sed  -i "/^[^#]*UsePAM/ s/.*/#&/"  /etc/ssh/sshd_config && \
     echo "Port 2122" >> /etc/ssh/sshd_config
 
 #Spark
-ADD http://apache.stu.edu.tw/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz /usr/local
+ADD spark-1.6.1-bin-hadoop2.6.tgz /usr/local
 
 CMD ["/etc/bootstrap.sh", "-d"]
 
