@@ -10,7 +10,6 @@ USER root
 # install dev tools
 RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync | true && \
     yum update -y libselinux | true && \
-    yum install -y scala | true && \
     yum install dnsmasq -y && \
     echo source /etc/bashrc > /root/.bash_profile && \
     echo user=root >> /etc/dnsmasq.conf && \
