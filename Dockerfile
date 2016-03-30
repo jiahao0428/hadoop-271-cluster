@@ -91,6 +91,10 @@ ADD spark-1.6.1-bin-hadoop2.6.tgz /usr/local
 ADD scala-2.10.4.tgz /usr/local
 RUN cd /usr/local && ln -s ./spark-1.6.1-bin-hadoop2.6 spark && \
     cd /usr/local && ln -s ./scala-2.10.4 scala
+    
+#ElasticSearch
+ADD elasticsearch-2.2.1.tar.gz /usr/local
+RUN cd /usr/local && ln -s ./elasticsearch-2.2.1 elasticsearch
 
 CMD ["/etc/bootstrap.sh", "-d"]
 
