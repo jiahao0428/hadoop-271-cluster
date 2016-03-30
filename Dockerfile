@@ -92,9 +92,13 @@ ADD scala-2.10.4.tgz /usr/local
 RUN cd /usr/local && ln -s ./spark-1.6.1-bin-hadoop2.6 spark && \
     cd /usr/local && ln -s ./scala-2.10.4 scala
     
-#ElasticSearch
+#Elasticsearch
 ADD elasticsearch-2.2.1.tar.gz /usr/local
 RUN cd /usr/local && ln -s ./elasticsearch-2.2.1 elasticsearch
+
+#kibana
+ADD kibana-4.4.2-linux-x64.tar.gz /usr/local
+RUN cd /usr/local && ln -s ./kibana-4.4.2-linux-x64 kibana
 
 CMD ["/etc/bootstrap.sh", "-d"]
 
