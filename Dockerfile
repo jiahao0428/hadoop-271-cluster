@@ -47,9 +47,11 @@ ENV HADOOP_PREFIX=/usr/local/hadoop \
     SPARK_HOME=/usr/local/spark \
     SPARK_YARN_QUEUE=dev \
     SCALA_HOME=/usr/local/scala \
+    ELASTICSEARCH_HOME=/usr/local/elasticsearch \
+    KIBANA_HOME=/usr/local/kibana \
     TERM=xterm
  
-ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$SCALA_HOME/bin:.
+ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$SCALA_HOME/bin:$ELASTICSEARCH_HOME/bin:$KIBANA_HOME/bin:.
 
 ENV alias elasticsearch='elasticsearch -Des.insecure.allow.root=true'
 
