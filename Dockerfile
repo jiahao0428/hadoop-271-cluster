@@ -32,6 +32,7 @@ RUN rpm -i /tmp/jdk-8u73-linux-x64.rpm && \
 ADD hadoop-2.7.1.tar.gz /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
     rm  /usr/local/hadoop/lib/native/*
+
 # sbt
 RUN curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 RUN yum install sbt
