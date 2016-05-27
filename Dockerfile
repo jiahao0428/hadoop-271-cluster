@@ -34,7 +34,7 @@ RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
     rm  /usr/local/hadoop/lib/native/*
 
 # sbt
-RUN curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 RUN yum install -y sbt
 
 # pip
