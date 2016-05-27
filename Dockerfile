@@ -38,7 +38,7 @@ RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.
 RUN yum install -y sbt
 
 # pip
-RUN　yum install -y python-pip
+RUN yum install -y python-pip
 
 # fixing the libhadoop.so like a boss
 ADD hadoop-native-64-2.7.0.tar /usr/local/hadoop/lib/native/
