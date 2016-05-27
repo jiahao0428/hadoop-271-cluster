@@ -35,7 +35,10 @@ RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
 
 # sbt
 RUN curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-RUN yum install sbt
+RUN yum install -y sbt
+
+# pip
+RUN　yum install -y python-pip
 
 # fixing the libhadoop.so like a boss
 ADD hadoop-native-64-2.7.0.tar /usr/local/hadoop/lib/native/
@@ -101,12 +104,12 @@ RUN cd /usr/local && ln -s ./spark-1.6.1-bin-hadoop2.6 spark && \
     cd /usr/local && ln -s ./scala-2.10.4 scala
     
 #Elasticsearch
-ADD elasticsearch-2.2.1.tar.gz /usr/local
-RUN cd /usr/local && ln -s ./elasticsearch-2.2.1 elasticsearch
+#ADD elasticsearch-2.2.1.tar.gz /usr/local
+#RUN cd /usr/local && ln -s ./elasticsearch-2.2.1 elasticsearch
 
 #kibana
-ADD kibana-4.4.2-linux-x64.tar.gz /usr/local
-RUN cd /usr/local && ln -s ./kibana-4.4.2-linux-x64 kibana
+#ADD kibana-4.4.2-linux-x64.tar.gz /usr/local
+#RUN cd /usr/local && ln -s ./kibana-4.4.2-linux-x64 kibana
 
 CMD ["/etc/bootstrap.sh", "-d"]
 
