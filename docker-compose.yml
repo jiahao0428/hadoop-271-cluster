@@ -11,6 +11,7 @@ services:
       - "8088:8088"
       - "50090:50090"
       - "19888:19888"
+      - "8080:8080"
     command: "/etc/bootstrap.sh -d -namenode"
 
   datanode:
