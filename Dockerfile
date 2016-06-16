@@ -38,7 +38,7 @@ RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.
 RUN yum install -y sbt
 
 # git
-RUN yum install git
+RUN yum install -y git
 
 # maven
 RUN yum install -y wget
