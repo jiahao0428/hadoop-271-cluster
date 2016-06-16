@@ -37,6 +37,20 @@ RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
 RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 RUN yum install -y sbt
 
+# git
+RUN yum install git
+
+# maven
+RUN yum install -y wget
+RUN wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+RUN sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+RUN yum install -y apache-maven
+
+# Zeppline
+RUN git clone https://github.com/apache/incubator-zeppelin.git
+RUN mv incubator-zeppelin /usr/local/zeppelin
+RUN cd /usr/local/zeppelin && mvn install -DskipTests
+
 # pip
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN yum install -y python-pip
