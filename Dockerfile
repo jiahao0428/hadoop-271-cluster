@@ -11,6 +11,7 @@ USER root
 RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync | true && \
     yum update -y libselinux | true && \
     yum install dnsmasq -y && \
+    yum reinstall cracklib-dicts -y && \
     echo source /etc/bashrc > /root/.bash_profile && \
     echo user=root >> /etc/dnsmasq.conf && \
     echo bogus-priv >> /etc/dnsmasq.conf && \
