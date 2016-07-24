@@ -128,8 +128,8 @@ RUN cd /usr/local && ln -s ./spark-1.6.1-bin-hadoop2.6 spark && \
 #RUN cd /usr/local && ln -s ./kibana-4.4.2-linux-x64 kibana
 
 CMD ["/etc/bootstrap.sh", "-d"]
-RUN /usr/local/zeppelin/bin/zeppelin-daemon.sh start
 RUN nameserver 8.8.8.8 >> /etc/resolv.conf
+RUN yum reinstall -y cracklib-dicts
 
 # Hdfs ports
 EXPOSE 50010 50020 50070 50075 50090 19888 8030 8031 8032 8033 8040 8042 8080 8088 49707 2122
