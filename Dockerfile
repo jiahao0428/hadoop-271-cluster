@@ -34,6 +34,11 @@ ADD hadoop-2.7.1.tar.gz /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
     rm  /usr/local/hadoop/lib/native/*
 
+# hive    
+ADD apache-hive-2.0.1-bin.tar.gz /usr/local/
+RUN cd /usr/local && ln -s ./apache-hive-2.0.1-bin hive
+RUN cd /usr/local/hive/conf && cp hive-env.sh.template hive-env.sh
+
 # sbt
 RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 RUN yum install -y sbt
@@ -72,9 +77,10 @@ ENV HADOOP_PREFIX=/usr/local/hadoop \
     SCALA_HOME=/usr/local/scala \
     ELASTICSEARCH_HOME=/usr/local/elasticsearch \
     KIBANA_HOME=/usr/local/kibana \
-    TERM=xterm
+    TERM=xterm \
+    HIVE_HOME=/usr/local/hive
  
-ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$SCALA_HOME/bin:$ELASTICSEARCH_HOME/bin:$KIBANA_HOME/bin:.
+ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$HIVE_HOME/bin:$SCALA_HOME/bin:$ELASTICSEARCH_HOME/bin:$KIBANA_HOME/bin:.
 
 ENV alias elasticsearch='elasticsearch -Des.insecure.allow.root=true'
 
