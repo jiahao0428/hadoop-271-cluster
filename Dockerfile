@@ -55,7 +55,7 @@ RUN yum install -y apache-maven
 # Zeppline
 RUN git clone https://github.com/apache/incubator-zeppelin.git
 RUN mv incubator-zeppelin /usr/local/zeppelin
-RUN cd /usr/local/zeppelin && mvn install -DskipTests
+RUN cd /usr/local/zeppelin && mvn install -DskipTests -Drat.skip=true
 
 # pip
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
