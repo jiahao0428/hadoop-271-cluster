@@ -34,19 +34,6 @@ ADD hadoop-2.7.1.tar.gz /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
     rm  /usr/local/hadoop/lib/native/*
 
-# hive    
-ADD apache-hive-2.0.1-bin.tar.gz /usr/local/
-ADD hive-site.xml /usr/local/hive/conf/
-RUN cd /usr/local && ln -s ./apache-hive-2.0.1-bin hive
-RUN cd /usr/local/hive/conf && cp hive-env.sh.template hive-env.sh
-
-# mysql
-RUN yum install -y mysql-server
-RUN yum install -y mysql-connector-java
-RUN cp /usr/share/java/mysql-connector-java.jar /usr/local/hive/lib/
-ADD bootstrap.sql /usr/local/hive/
-RUN cd /usr/local/hive && mysql < bootstrap.sql
-
 # sbt
 RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 RUN yum install -y sbt
@@ -91,6 +78,24 @@ ENV HADOOP_PREFIX=/usr/local/hadoop \
 ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$HIVE_HOME/bin:$SCALA_HOME/bin:$ELASTICSEARCH_HOME/bin:$KIBANA_HOME/bin:.
 
 ENV alias elasticsearch='elasticsearch -Des.insecure.allow.root=true'
+
+# hive    
+ADD apache-hive-2.0.1-bin.tar.gz /usr/local/
+ADD hive-site.xml /usr/local/hive/conf/
+RUN cd /usr/local && ln -s ./apache-hive-2.0.1-bin hive
+RUN cd /usr/local/hive/conf && cp hive-env.sh.template hive-env.sh
+RUN hadoop fs -mkdir /usr
+RUN hadoop fs -mkdir /usr/hive
+RUN hadoop fs -mkdir /usr/hive/warehouse
+RUN hadoop fs -chmod g+w /usr/hive/warehouse
+
+# mysql
+RUN yum install -y mysql-server
+RUN yum install -y mysql-connector-java
+RUN cp /usr/share/java/mysql-connector-java.jar /usr/local/hive/lib/
+ADD bootstrap.sql /usr/local/hive/
+RUN cd /usr/local/hive && mysql < bootstrap.sql
+
 
 RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/java/default\nexport HADOOP_PREFIX=/usr/local/hadoop\nexport HADOOP_HOME=/usr/local/hadoop\n:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh && \
     sed -i '/^export HADOOP_CONF_DIR/ s:.*:export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop/:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh && \
