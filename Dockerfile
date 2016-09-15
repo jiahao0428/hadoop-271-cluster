@@ -36,8 +36,16 @@ RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop && \
 
 # hive    
 ADD apache-hive-2.0.1-bin.tar.gz /usr/local/
+ADD hive-site.xml /usr/local/hive/conf/
 RUN cd /usr/local && ln -s ./apache-hive-2.0.1-bin hive
 RUN cd /usr/local/hive/conf && cp hive-env.sh.template hive-env.sh
+
+# mysql
+RUN yum install -y mysql-server
+RUN yum install -y mysql-connector-java
+RUN cp /usr/share/java/mysql-connector-java.jar /usr/local/hive/lib/
+ADD bootstrap.sql /usr/local/hive/
+RUN cd /usr/local/hive && mysql < bootstrap.sql
 
 # sbt
 RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo
