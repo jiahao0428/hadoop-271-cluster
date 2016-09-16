@@ -83,6 +83,7 @@ ENV alias elasticsearch='elasticsearch -Des.insecure.allow.root=true'
 ADD apache-hive-2.0.1-bin.tar.gz /usr/local/
 RUN cd /usr/local && ln -s ./apache-hive-2.0.1-bin hive
 ADD hive-site.xml /usr/local/hive/conf/
+ADD hive-site.xml /usr/local/spark/conf/
 RUN cd /usr/local/hive/conf && cp hive-env.sh.template hive-env.sh
 
 # mysql
