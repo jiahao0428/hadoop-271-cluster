@@ -84,17 +84,12 @@ ADD apache-hive-2.0.1-bin.tar.gz /usr/local/
 ADD hive-site.xml /usr/local/hive/conf/
 RUN cd /usr/local && ln -s ./apache-hive-2.0.1-bin hive
 RUN cd /usr/local/hive/conf && cp hive-env.sh.template hive-env.sh
-RUN hadoop fs -mkdir /usr
-RUN hadoop fs -mkdir /usr/hive
-RUN hadoop fs -mkdir /usr/hive/warehouse
-RUN hadoop fs -chmod g+w /usr/hive/warehouse
 
 # mysql
 RUN yum install -y mysql-server
 RUN yum install -y mysql-connector-java
 RUN cp /usr/share/java/mysql-connector-java.jar /usr/local/hive/lib/
 ADD bootstrap.sql /usr/local/hive/
-RUN cd /usr/local/hive && mysql < bootstrap.sql
 
 
 RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/java/default\nexport HADOOP_PREFIX=/usr/local/hadoop\nexport HADOOP_HOME=/usr/local/hadoop\n:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh && \
