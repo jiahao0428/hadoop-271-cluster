@@ -84,7 +84,6 @@ ENV alias elasticsearch='elasticsearch -Des.insecure.allow.root=true'
 ADD apache-hive-2.0.1-bin.tar.gz /usr/local/
 RUN cd /usr/local && ln -s ./apache-hive-2.0.1-bin hive
 ADD hive-site.xml /usr/local/hive/conf/
-ADD hive-site.xml /usr/local/spark/conf/
 RUN cd /usr/local/hive/conf && cp hive-env.sh.template hive-env.sh
 
 # mysql
@@ -134,6 +133,7 @@ ADD spark-1.6.1-bin-hadoop2.6.tgz /usr/local
 ADD scala-2.10.4.tgz /usr/local
 RUN cd /usr/local && ln -s ./spark-1.6.1-bin-hadoop2.6 spark && \
     cd /usr/local && ln -s ./scala-2.10.4 scala
+ADD hive-site.xml /usr/local/spark/conf/
     
 #Elasticsearch
 #ADD elasticsearch-2.2.1.tar.gz /usr/local
