@@ -13,8 +13,14 @@ service sshd start
 
 if [[ $1 = "-namenode" || $2 = "-namenode" ]]; then
   service dnsmasq start
+  service mysqld start
   $HADOOP_PREFIX/sbin/start-dfs.sh
   $HADOOP_PREFIX/sbin/start-yarn.sh
+  mysql < /usr/local/hive/bootstrap.sql
+  hadoop fs -mkdir /usr
+  hadoop fs -mkdir /usr/hive
+  hadoop fs -mkdir /usr/hive/warehouse
+  hadoop fs -chmod g+w /usr/hive/warehouse
 fi
 
 if [[ $1 = "-datanode" || $2 = "-datanode" ]]; then
