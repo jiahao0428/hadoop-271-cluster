@@ -3965,7 +3965,7 @@
   </property>
   <property>
     <name>hive.execution.engine</name>
-    <value>mr</value>
+    <value>spark</value>
     <description>
       Expects one of [mr, tez, spark].
       Chooses execution engine. Options are: mr (Map reduce, default), tez, spark. While MR
@@ -4840,7 +4840,7 @@
   </property>
   <property>
       <name>javax.jdo.option.ConnectionURL</name>
-      <value>jdbc:mysql://namenode/metastore?createDatabaseIfNotExist=true</value>
+      <value>jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true</value>
       <description>metadata is stored in a MySQL server</description>
    </property>
    <property>
