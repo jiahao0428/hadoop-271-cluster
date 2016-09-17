@@ -78,7 +78,7 @@ ENV HADOOP_PREFIX=/usr/local/hadoop \
  
 ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$HIVE_HOME/bin:$SCALA_HOME/bin:$ELASTICSEARCH_HOME/bin:$KIBANA_HOME/bin:.
 
-ENV alias elasticsearch='elasticsearch -Des.insecure.allow.root=true'
+#ENV alias elasticsearch='elasticsearch -Des.insecure.allow.root=true'
 
 # hive    
 ADD apache-hive-2.0.1-bin.tar.gz /usr/local/
