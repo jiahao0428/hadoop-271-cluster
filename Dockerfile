@@ -78,6 +78,8 @@ ENV HADOOP_PREFIX=/usr/local/hadoop \
  
 ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HDFS_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$HIVE_HOME/bin:$SCALA_HOME/bin:$ELASTICSEARCH_HOME/bin:$KIBANA_HOME/bin:.
 
+ENV PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH
+
 #ENV alias elasticsearch='elasticsearch -Des.insecure.allow.root=true'
 
 # hive    
