@@ -55,7 +55,9 @@ RUN cd /usr/local/zeppelin && mvn install -DskipTests -Drat.skip=true
 # pip
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN yum install -y python-pip
+RUN yum install python-devel
 RUN pip install requests
+RUN pip install numpy
 
 # fixing the libhadoop.so like a boss
 ADD hadoop-native-64-2.7.0.tar /usr/local/hadoop/lib/native/
