@@ -9,6 +9,8 @@ USER root
 
 # install dev tools
 RUN yum -y update && \
+    yum install -y centos-release-SCL && \
+    yum install -y python27 && \
     yum install -y curl which tar sudo openssh-server openssh-clients rsync | true && \
     yum update -y libselinux | true && \
     yum install dnsmasq -y && \
