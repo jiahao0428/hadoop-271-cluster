@@ -58,6 +58,7 @@ RUN yum install -y python-pip
 RUN yum install -y python-devel
 RUN pip install requests
 RUN pip install numpy
+RUN pip install pandas
 
 # fixing the libhadoop.so like a boss
 ADD hadoop-native-64-2.7.0.tar /usr/local/hadoop/lib/native/
