@@ -50,19 +50,20 @@ RUN wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-mave
 RUN sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 RUN yum install -y apache-maven
 
-# Zeppline
-RUN git clone https://github.com/apache/incubator-zeppelin.git
-RUN mv incubator-zeppelin /usr/local/zeppelin
-RUN cd /usr/local/zeppelin && mvn install -DskipTests -Drat.skip=true
-
 # pip
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-RUN yum install -y python-pip
+ADD get-pip.py /
+RUN cd / && python get-pip.py
 RUN pip install python-devel
 RUN pip install requests
 RUN pip install numpy
 RUN pip install cython
 RUN pip install pandas
+
+# Zeppline
+RUN git clone https://github.com/apache/incubator-zeppelin.git
+RUN mv incubator-zeppelin /usr/local/zeppelin
+RUN cd /usr/local/zeppelin && mvn install -DskipTests -Drat.skip=true
 
 # fixing the libhadoop.so like a boss
 ADD hadoop-native-64-2.7.0.tar /usr/local/hadoop/lib/native/
