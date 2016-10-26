@@ -54,19 +54,17 @@ RUN yum install -y apache-maven
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN yum groupinstall -y development
 RUN yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel
-RUN yum install -y centos-release-SCL
-RUN yum install -y python27
+ADD Python-2.7.6.tar.xz /usr/local/bin
+RUN cd /usr/local/bin/Python-2.7.6 && ./configure --prefix=/usr/local
+RUN cd /usr/local/bin/Python-2.7.6 && make
+RUN cd /usr/local/bin/Python-2.7.6 && make altinstall
+#RUN yum install -y python-devel
 ADD get-pip.py /
 RUN cd / && python get-pip.py
-#ADD Python-2.7.6.tar.xz /usr/local/bin
-#RUN cd /usr/local/bin/Python-2.7.6 && ./configure --prefix=/usr/local
-#RUN cd /usr/local/bin/Python-2.7.6 && make
-#RUN cd /usr/local/bin/Python-2.7.6 && make altinstall
-#RUN yum install -y python-devel
-RUN pip2 install requests
-RUN pip2 install numpy
-RUN pip2 install cython
-RUN pip2 install pandas
+RUN pip install requests
+RUN pip install numpy
+RUN pip install cython
+RUN pip install pandas
 
 # Zeppline
 RUN git clone https://github.com/apache/incubator-zeppelin.git
