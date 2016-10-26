@@ -58,6 +58,7 @@ RUN yum install -y python-pip
 RUN yum install -y python-devel
 RUN pip install requests
 RUN pip install numpy
+RUN pip install cython
 RUN pip install pandas
 
 # fixing the libhadoop.so like a boss
