@@ -8,7 +8,8 @@ MAINTAINER JiaHao Cheng jiahao0428@gmail.com
 USER root
 
 # install dev tools
-RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync | true && \
+RUN yum -y update && \
+    yum install -y curl which tar sudo openssh-server openssh-clients rsync | true && \
     yum update -y libselinux | true && \
     yum install dnsmasq -y && \
     yum reinstall cracklib-dicts -y && \
