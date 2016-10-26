@@ -52,9 +52,16 @@ RUN yum install -y apache-maven
 
 # pip
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN yum groupinstall -y development
+RUN yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel
+RUN yum install -y centos-release-SCL
+RUN yum install -y python27
 ADD get-pip.py /
 RUN cd / && python get-pip.py
-RUN yum groupinstall -y development
+#ADD Python-2.7.6.tar.xz /usr/local/bin
+#RUN cd /usr/local/bin/Python-2.7.6 && ./configure --prefix=/usr/local
+#RUN cd /usr/local/bin/Python-2.7.6 && make
+#RUN cd /usr/local/bin/Python-2.7.6 && make altinstall
 #RUN yum install -y python-devel
 RUN pip2 install requests
 RUN pip2 install numpy
